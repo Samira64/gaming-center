@@ -1,1 +1,29 @@
-<h1>Welcome to game_accounts page!</h1>
+<h1>All game accounts!</h1>
+
+<%= link_to 'Create a New Game Account', new_admin_game_account_path, class: 'btn btn-success float-right' %> 
+
+<div class="col-md-9">
+	<table class="table table-hover mt-5">
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th>Username</th>
+				<th>Status</th>
+				<th>Created_at</th>
+			</tr>
+		</thead>
+		<tbody>
+				<% @game_accounts.each do |game_account| %>
+			<tr>
+				<td><%= game_account.title %></td>
+				<td><%= game_account.username %></td>
+				<td><%= game_account.status %></td>
+				<td><%= game_account.created_at %></td>
+				<td> 
+				 <%= link_to 'Edit', edit_game_account_url(game_account), class: "btn btn-warning" %>
+				</td>
+			</tr>
+				<% end %>
+			</tbody>
+	</table>
+</div>

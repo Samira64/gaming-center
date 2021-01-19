@@ -1,0 +1,77 @@
+<div class="page-header">
+	<h3>New Game Account</h3>
+</div>
+
+<%= form_for(admin_game_accounts_path, class: "form-horizontal") do |f| %>
+
+	<div class="form-group">
+		<%= f.label "title", class: "control-label col-sm-2" %>
+		<div class="col-sm-3">
+			<%= f.text_field :title, class: "form-control" %>
+		</div>
+	</div>
+
+	<div class= "form-group">
+		<%= f.label "username", class: "control-label col-sm-2" %>
+		<div class="col-sm-3">
+			<%= f.text_field :username, class: "form-control" %>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<%= f.label "password", class: "control-label col-sm-2" %>
+		<div class="col-sm-3">
+			<%= f.text_field :password, class: "form-control" %>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<%= f.label "email-id", class:"control-label col-sm-2" %>
+		<div class="col-sm-3">
+			<%= f.text_field :email_id, class: "form-control" %>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<%= f.label "email_password", class:"control-label col-sm-2" %>
+		<div class="col-sm-3">
+			<%= f.text_field :email_password, class: "form-control" %>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<%= f.label "cap1-status", class:"control-label col-sm-2" %>
+		<div class="col-sm-3">
+			<%= select_tag "cap1_status", options_for_select(["available", "sold", "notavailable"]) %>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<%= f.label "cap2-status", class:"control-label col-sm-2" %>
+		<div class="col-sm-3">
+			<%= select_tag "cap2_status", options_for_select(["available", "sold", "notavailable"]) %>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<%= f.label "cap3-status", class:"control-label col-sm-2" %>
+		<div class="col-sm-3">
+			<%= f.select "cap3_status", options_for_select(["available", "sold", "notavailable"]) %>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<%= f.label "remarks", class: "control-label col-sm-2" %>
+		<div class="col-sm-3">
+			<%= f.text_area :remarks, class: "form-control" %>
+		</div>
+	</div>
+
+	<%= f.submit  "Submit", class: "btn btn-primary submit-button ml-3" %>
+<% end %>
+
+<ul class="mt-5">
+	<li>
+	    <a href="/admin/game_accounts" role="button">Back To Game Accounts </a>
+	</li>
+</ul>

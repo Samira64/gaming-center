@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   Spree::Core::Engine.routes.draw do
  	namespace :admin do
-   	   get 'game-accounts', :to => 'game_accounts#index' 
+   	   resources :game_accounts  
   	end
   end
   # This line mounts Solidus's routes at the root of your application.
