@@ -2,7 +2,7 @@
 	<h3>New Game Account</h3>
 </div>
 
-<%= form_for(admin_game_accounts_path, class: "form-horizontal") do |f| %>
+<%= form_for @game_account, url: admin_game_accounts_url, html: { class: "form-horizental"} do |f| %>
 
 	<div class="form-group">
 		<%= f.label "title", class: "control-label col-sm-2" %>
