@@ -1,0 +1,37 @@
+<div id="content-header" class="main-header" data-hook>
+
+	<% if current_page?(admin_game_accounts_path) %>
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">All Game Accounts!</li>
+		</ol>
+
+		<ul class="header-actions page-actions inline-menu" data-hook="toolbar">
+			<li>
+				<%= link_to 'Create a New Game Account', new_admin_game_account_path, class: 'btn btn-primary' %> 
+			</li>
+		</ul>
+	<% elsif current_page?(edit_admin_game_account_path(id:1)) %>
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">Edit Game Account!</li>
+		</ol>
+	<% elsif current_page?(new_admin_game_account_path) %>
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">Create New Game Account!</li>
+		</ol>
+	<% else %>
+		<%= render_admin_breadcrumbs %>
+		<% if content_for?(:page_actions) %>
+		    <ul class="header-actions page-actions inline-menu" data-hook="toolbar">
+		      <%= yield :page_actions %>
+		    </ul>
+  		<% end %>
+	<% end%>
+	
+</div>
+
+	
+
+	
+
+
+	

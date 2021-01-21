@@ -1,11 +1,9 @@
-<div class="ml-3">
-	<h3>New Game Account</h3>
-</div>
+<div class="col-md-12">
+	<%= render(partial: 'form', locals: {url: admin_game_accounts_url}) %>
 
-<%= render(partial: 'form', locals: {url: admin_game_accounts_url}) %>
-
-<ul class="mt-5 mr-5 float-right">
+<ul class="list-unstyled mt-5 mr-5 float-right">
 	<li>
 	    <a href="/admin/game_accounts" role="button">Back To Game Accounts </a>
 	</li>
 </ul>
+</div>
