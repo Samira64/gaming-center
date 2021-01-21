@@ -2,7 +2,7 @@
 	<h3>Edit Game Account <%= @game_account.title %></h3>
 </div>
 
-<%= render 'form' %>
+<%= render(partial: 'form', locals: {url: admin_game_accounts_path(@game_account)}) %>
 
 <ul class="mt-5 mr-5 float-right">
 	<li>

@@ -28,7 +28,7 @@ module Spree
 		@game_account= GameAccount.find(params[:id])
 		
 		if @game_account.update(game_account_params)
-			redirect_to admin_game_accounts_url, notice: "The Game account \"#{@gameAccount.name}\" was updated sucessfully."
+			redirect_to admin_game_accounts_url, notice: "The Game account \"#{@game_account.title}\" was updated sucessfully."
 		else
 			render "edit"
 		end
