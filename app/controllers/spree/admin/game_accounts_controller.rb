@@ -1,6 +1,7 @@
 module Spree
   module Admin
     class GameAccountsController < Spree::Admin::BaseController
+
       def index
       	@game_accounts = GameAccount.all
       end
@@ -22,6 +23,9 @@ module Spree
 
 	def edit
 		@game_account= GameAccount.find(params[:id])
+		@cap1_status = @game_account.cap1_status
+		@cap2_status = @game_account.cap2_status
+		@cap3_status = @game_account.cap3_status
 	end
 
 	def update 
