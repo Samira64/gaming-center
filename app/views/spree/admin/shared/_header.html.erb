@@ -10,10 +10,12 @@
 				<%= link_to 'Create a New Game Account', new_admin_game_account_path, class: 'btn btn-primary' %> 
 			</li>
 		</ul>
-	<% elsif current_page?(edit_admin_game_account_path(id:1)) %>
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item">Edit Game Account!</li>
-		</ol>
+	<% elsif (@game_account && @game_account.id) %>
+		<% if current_page?(edit_admin_game_account_path(@game_account.id)) %>
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">Edit Game Account!</li>
+			</ol>
+		<% end %>
 	<% elsif current_page?(new_admin_game_account_path) %>
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item">Create New Game Account!</li>
