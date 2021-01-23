@@ -1,9 +1,11 @@
+<% admin_breadcrumb("Create New Game Account") %>
+
 <div class="col-md-12">
 	<%= render(partial: 'form', locals: {url: admin_game_accounts_url}) %>
 
-<ul class="list-unstyled mt-5 mr-5 float-right">
-	<li>
-	    <a href="/admin/game_accounts" role="button">Back To Game Accounts </a>
-	</li>
-</ul>
+	<ul class="list-unstyled mt-5 mr-5 float-right">
+		<li>
+			<a href="/admin/game_accounts" role="button">Back To Game Accounts </a>
+		</li>
+	</ul>
 </div>

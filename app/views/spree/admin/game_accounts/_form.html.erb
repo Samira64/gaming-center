@@ -43,7 +43,7 @@
 		<div class="form-group col-md-6">
 			<%= f.label "cap3-status", class:"control-label col-sm-3" %>
 			<div class="col-sm-3">
-				<%= f.select :cap3_status, options_for_select(["available", "sold", "not available"], :select => @cap3_status) %>
+				<%= f.select :cap3_status, options_for_select(["available", "sold", "not available"], :selected => @cap3_status) %>
 			</div>
 		</div>
 	</div>
