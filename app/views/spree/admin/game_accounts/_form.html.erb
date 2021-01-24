@@ -1,3 +1,4 @@
+<% capacities = GameAccount.capacities.map {|c| [c.capitalize, c] }%>
 <%= form_for [:admin, @game_account] do |f| %>
 	<div class="form-row">
 		<div class="form-group col-md-6">
@@ -10,8 +11,7 @@
 		<div class="form-group col-md-6">
 			<%= f.label "cap1-status", class:"control-label col-sm-3" %>
 			<div class="col-sm-3">
-				<%= f.select :cap1_status, options_for_select(["available", "not available", "sold"], 
-					  :selected => @cap1_status) %>
+				<%= f.select :cap1_status, options_for_select(capacities, :selected => @game_account.cap1_status) %>
 			</div>
 		</div>
 	</div>
@@ -27,7 +27,7 @@
 		<div class="form-group col-md-6">
 			<%= f.label "cap2-status", class:"control-label col-sm-3" %>
 			<div class="col-sm-3">
-				<%= f.select :cap2_status, options_for_select(["available", "sold", "not available"], :selected => @cap2_status) %>
+				<%= f.select :cap2_status, options_for_select(capacities, :selected => @game_account.cap2_status) %>
 			</div>
 		</div>
 	</div>
@@ -43,13 +43,13 @@
 		<div class="form-group col-md-6">
 			<%= f.label "cap3-status", class:"control-label col-sm-3" %>
 			<div class="col-sm-3">
-				<%= f.select :cap3_status, options_for_select(["available", "sold", "not available"], :selected => @cap3_status) %>
+				<%= f.select :cap3_status, options_for_select(capacities, :selected => @game_account.cap3_status) %>
 			</div>
 		</div>
 	</div>
 
 	<div class="form-group">
-		<%= f.label "email-id", class:"control-label col-sm-2" %>
+		<%= f.label "email-id", "Email ID", class:"control-label col-sm-2" %>
 		<div class="col-sm-3">
 			<%= f.text_field :email_id, class: "form-control" %>
 		</div>
