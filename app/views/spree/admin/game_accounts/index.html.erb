@@ -23,7 +23,7 @@
 				<td><%= game_account.title %></td>
 				<td><%= game_account.username %></td>
 				<td><%= game_account.status %></td>
-				<td><%= game_account.created_at.to_formatted_s(:long_ordinal) %></td>
+				<td><%= game_account.created_at.strftime("%d %B %Y") %></td>
 				<td> 
 					<%= link_to 'Edit', edit_admin_game_account_url(game_account), class: "btn btn-warning" %>
 				</td>
