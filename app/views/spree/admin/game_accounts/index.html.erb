@@ -1,8 +1,9 @@
+<% admin_layout "full-width" %>
 <% admin_breadcrumb("All Game Accounts") %>
 
 <% content_for :page_actions do %>
   <li>
-    <%= link_to t('spree.new_game_account'), new_admin_game_account_url, id: 'admin_new_game_account', class: 'btn btn-primary' %>
+    <%= link_to 'New Game Account', new_admin_game_account_url, id: 'admin_new_game_account', class: 'btn btn-primary' %>
   </li>
 <% end %>
 
