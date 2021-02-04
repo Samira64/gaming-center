@@ -26,7 +26,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'solidus'
 gem 'mailjet'
 gem 'figaro'
-
+gem "factory_bot_rails"
+gem 'faker'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
