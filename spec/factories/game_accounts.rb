@@ -1,9 +1,14 @@
 FactoryBot.define do
 	factory :game_account do
-		title {'sth'}
-		username {'test1'}
-		email_id {'test@gmail.com'}
-		password {'test12'}
+		title {Faker::Game.title}
+		username {Faker::Internet.username}
+		email_id {Faker::Internet.email}
+		password {Faker::Internet.password}
+		platform {Faker::Game.platform}
+		remarks {"SomeRemarks"}
+		cap1_status {'sold'}
+		cap2_status {'available'}
+		cap3_status {'unavailable'}
 	end
 
 end
