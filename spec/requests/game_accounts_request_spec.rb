@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "GameAccounts", type: :request do
-	before do
-		user = Spree.user_class.create(email: "admin@gmail.com", password: "test123", password_confirmation: "test123");
+	let!(:user) { FactoryBot.create(:user)}
+
+	before do	
 		user.spree_roles << Spree::Role.find_or_create_by(name: 'admin');
 		sign_in user
 	end
@@ -14,7 +15,7 @@ RSpec.describe "GameAccounts", type: :request do
 		end
   end
 
-  context "Get #new" do
+    context "Get #new" do
 		it "renders a form creating a new GameAccount" do
 			get new_admin_game_account_path
 			expect(response.body).to include("Create New Game Account")
@@ -23,6 +24,7 @@ RSpec.describe "GameAccounts", type: :request do
 
 	context "Get #edit" do
 		let!(:game_account) { FactoryBot.create(:game_account)}
+
 		it "returns game_accounts#edit template" do
 			get edit_admin_game_account_path game_account
 			expect(response.body).to include("Edit Game Account")
@@ -37,19 +39,19 @@ RSpec.describe "GameAccounts", type: :request do
 			game_account.reload
 		end
 		
-    it { expect(response).to redirect_to(admin_game_accounts_path) }
-    it { expect(game_account.title).to eql("my new title") }
+	    it { expect(response).to redirect_to(admin_game_accounts_path) }
+	    it { expect(game_account.title).to eql("my new title") }
 		
 	end
-#
-#	context "Delete #destroy" do
-#		let!(:game_account) { create(:game_account)}
-#
-#		it "Allows a game_account to be deleted" do
-#			expect { 
-#       		 delete "/admin/game_accounts/#{game_account.id}", params: { id: game_account.id } }.to change(GameAccount, :count).by(-1)		
-#		end
-#	end
+
+	context "Delete #destroy" do
+		let!(:game_account) { create(:game_account)}
+
+		it "Allows a game_account to be deleted" do
+			expect { 
+      		 delete "/admin/game_accounts/#{game_account.id}", params: { id: game_account.id } }.to change(GameAccount, :count).by(-1)		
+		end
+	end
 
 end
 
