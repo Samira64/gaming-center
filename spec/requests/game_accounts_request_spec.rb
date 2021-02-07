@@ -4,7 +4,6 @@ RSpec.describe "GameAccounts", type: :request do
 	let!(:user) { FactoryBot.create(:admin)}
 
 	before do	
-		# user.spree_roles << Spree::Role.find_or_create_by(name: 'admin');
 		sign_in user
 	end
 

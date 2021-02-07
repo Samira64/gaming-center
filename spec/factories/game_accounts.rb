@@ -12,5 +12,3 @@ FactoryBot.define do
 		cap3_status {'unavailable'}
 	end
 end
-
-# created_game_accounts = Factorybot.create_list(:game_account, 25)
