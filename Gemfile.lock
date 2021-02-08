@@ -140,6 +140,7 @@ GEM
       execjs (~> 2.0)
       sprockets (>= 2.0.0)
       tilt (>= 1.2)
+    hirb (0.7.3)
     http-accept (1.7.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
@@ -424,6 +425,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   figaro
+  hirb
   jbuilder (~> 2.7)
   listen (~> 3.2)
   mailjet
@@ -446,4 +448,4 @@ RUBY VERSION
    ruby 2.6.3p62
 
 BUNDLED WITH
-   1.17.2
+   1.17.3
