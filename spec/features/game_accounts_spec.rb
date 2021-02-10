@@ -11,14 +11,14 @@ RSpec.feature "GameAccounts", type: :feature do
 	end
 
 	context "Create new game account" do
-		scenario "Should create a new user" do
+		scenario "Should create a new game_account" do
 			visit new_admin_game_account_path
 			within('form') do
-				fill_in 'game_account[title]', with: 'test 1'
+				fill_in 'Title', with: 'test 1'
 				fill_in 'Username', with: 'test 1'
 				fill_in 'Password', with: 'test 1'
-				fill_in 'game_account[email_id]', with: 'test 1'
-				fill_in 'game_account[email_password]', with: 'test 1'
+				fill_in 'Email ID', with: 'test 1'
+				fill_in 'Email password', with: 'test 1'
 				fill_in 'Remarks', with: 'test 1'
 				select('Available', from: 'game_account_cap1_status')
 				select('Available', from: 'game_account_cap2_status')
@@ -31,17 +31,17 @@ RSpec.feature "GameAccounts", type: :feature do
 		scenario "Should fail to create new game account" do
 			visit new_admin_game_account_path
 			within('form') do
-				fill_in 'game_account[title]', with: 'test 1'
-				fill_in 'Username', with: 'test 1'
-				fill_in 'Password', with: 'test 1'
-				fill_in 'game_account[email_password]', with: 'test 1'
-				fill_in 'Remarks', with: 'test 1'
+				fill_in 'Title', with: Faker::Game.title
+				fill_in 'Username', with: Faker::Internet.username
+				fill_in 'Password', with: Faker::Internet.password
+				fill_in 'Email password', with: Faker::Internet.password
+				fill_in 'Remarks', with: Faker::TvShows::FamilyGuy.quote
 				select('Available', from: 'game_account_cap1_status')
 				select('Available', from: 'game_account_cap2_status')
 				select('Available', from: 'game_account_cap3_status')
 			end
 			click_button "Submit"
-			expect(page).to have_content("is created successfully.")
+			expect(page).to have_content("Create New Game Account")
 		end
 	end
 
