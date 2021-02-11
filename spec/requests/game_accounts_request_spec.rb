@@ -31,7 +31,7 @@ RSpec.describe "GameAccounts", type: :request do
 		end
 	end
 
-	context "PUT 'update/:id" do
+	context "PUT #update" do
 		let!(:game_account) { FactoryBot.create(:game_account) }
 		let!(:new_game_params) { FactoryBot.attributes_for(:game_account) }
 

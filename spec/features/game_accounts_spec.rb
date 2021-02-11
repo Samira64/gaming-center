@@ -24,7 +24,7 @@ RSpec.feature "GameAccounts", type: :feature do
 				select('Available', from: 'game_account_cap2_status')
 				select('Available', from: 'game_account_cap3_status')
 			end
-			expect(click_button 'Submit').to change(GameAccount, :count).by(1) 
+			expect{ click_button 'Submit' }.to change(GameAccount, :count).by(1) 
 		end
 		
 		scenario "Should fail to create new game account" do
@@ -49,7 +49,7 @@ RSpec.feature "GameAccounts", type: :feature do
 				fill_in 'Title', with: Faker::Game.title
 				fill_in 'Username', with: Faker::Internet.username
 			end
-			expect(page).to have_content("is updated successfully")
+			expect(page.current_path).to eql(admin_game_accounts_path)
 		end
 		
 		scenario "Should fail to update game account" do
@@ -61,7 +61,7 @@ RSpec.feature "GameAccounts", type: :feature do
 		scenario "Should destroy the game account" do
 			game_account = FactoryBot.create(:game_account)
 			visit admin_game_accounts_path
-			expect(click_link "Delete"). to change(GameAccount, :count).by(-1)	
+			expect { click_link "Delete" }. to change(GameAccount, :count).by(-1)	
 		end
 
 	end
