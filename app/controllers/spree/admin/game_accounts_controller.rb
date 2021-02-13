@@ -15,7 +15,7 @@ module Spree
 
 		if @game_account.save
 			redirect_to admin_game_accounts_path, 
-			notice: "Game account   \"#{@game_account.title}\"   is created successfully."
+			notice: "Game account   \"#{@game_account.title}\"   is created successfully"
 		else
 			render "new"
 		end
@@ -29,7 +29,7 @@ module Spree
 		@game_account= GameAccount.find(params[:id])
 		
 		if @game_account.update(game_account_params)
-			redirect_to admin_game_accounts_url, notice: "Game account \"#{@game_account.title}\" is updated sucessfully"
+			redirect_to admin_game_accounts_url, notice: "Game account \"#{@game_account.title}\" is updated successfully"
 		else
 			render "edit"
 		end
@@ -38,7 +38,7 @@ module Spree
 	def destroy
 		@game_account= GameAccount.find(params[:id])
 		@game_account.delete
-		redirect_to admin_game_accounts_url, notice: "Game account \"#{@game_account.title}\" is deleted sucessfully"
+		redirect_to admin_game_accounts_url, notice: "Game account \"#{@game_account.title}\" is deleted successfully"
 	end
 
 	def game_account_params

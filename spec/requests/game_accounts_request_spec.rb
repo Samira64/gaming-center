@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "GameAccounts", type: :request do
 	let!(:user) { FactoryBot.create(:admin)}
+	let!(:game_account) {FactoryBot.create(:game_account, {title: 'Last Of Us'})}
 
 	before do	
 		sign_in user
@@ -11,6 +12,7 @@ RSpec.describe "GameAccounts", type: :request do
 		it 'Shows the list of Game Accounts' do
 			get admin_game_accounts_path
 			expect(response.body).to include("All Game Accounts");
+			expect(response.body).to include(game_account.title);
 		end
   end
 
