@@ -59,16 +59,20 @@ RSpec.feature "GameAccounts", type: :feature do
 	context "Update game account" do
 		let!(:game_account) { FactoryBot.create(:game_account) }
 		let!(:game_account_attrs) { FactoryBot.attributes_for(:game_account)}
+         
+        scenario "Should display edit form" do
+        	click_link('Edit', href: "#{edit_admin_game_account_path(game_account)}") 
+			expect(page).to have_current_path(edit_admin_game_account_path(game_account))
+        end  
 
-		before do
+		scenario "Should update the game account" do
 			visit edit_admin_game_account_path(game_account)
-		end
 
-		scenario "Should update the game account" do	
 			within('form') do
 				fill_in 'Title', with: game_account_attrs[:title]
 				fill_in 'Username', with: game_account_attrs[:username]
 			end
+
 			click_button 'Submit'
 			expect(page.current_path).to eql(admin_game_accounts_path)
 			expect(page).to have_selector('td', text: game_account_attrs[:title])
