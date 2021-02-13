@@ -81,7 +81,7 @@ RSpec.feature "GameAccounts", type: :feature do
 		let! (:game_account) { FactoryBot.create(:game_account)}
 		scenario "Should destroy the game account" do
 			visit admin_game_accounts_path
-			expect { click_link "Delete" }. to change(GameAccount, :count).by(-1)	
+			expect { click_link('Delete', href: "/admin/game_accounts/#{game_account.id}") }.to change(GameAccount, :count).by(-1)	
 		end
 
 	end
