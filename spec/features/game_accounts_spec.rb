@@ -5,6 +5,8 @@ RSpec.feature "GameAccounts", type: :feature do
 	let!(:game_account_attrs) { FactoryBot.attributes_for(:game_account)}
 	before :each do
 		login_as(user)
+		visit admin_orders_url
+		click_link("Game Accounts")
 	end
 
 	after :each do
