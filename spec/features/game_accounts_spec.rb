@@ -14,13 +14,14 @@ RSpec.feature "GameAccounts", type: :feature do
 	end
 
 	context "Show display game accounts" do
-		pending('show check if existing game accounts are listed')
-		pending('show check if New, Edit and Delete buttons exist')
-		# make sure all the following scenarios start from the Game Account page. 
-		#For instance, to Edit a game account you shoulf first visit home page, then click on a game account
-		#Then check you are the right page, then fill the fields etc
-		#For Delete and Edit, we must make sure we are clicking the right button and not a button that may 
-		#belong to another game account. How can we do that? Let me know before implementing it
+		scenario "Should list all the existing game accounts" do
+			expect(page).to have_selector("tbody tr", count: GameAccount.count)
+		end
+		
+		scenario "Should display edit and delete buttons" do
+			page.should have_selector(:link_or_button, 'Edit')
+			page.should have_selector(:link_or_button, 'Delete')	
+		end
 	end
 
 	context "Create new game account" do
