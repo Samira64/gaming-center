@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "GameAccounts", type: :feature do
 	let!(:user) { FactoryBot.create(:admin)}
+	let!(:game_accounts) {FactoryBot.create_list(:game_account, 5)}
 	let!(:game_account_attrs) { FactoryBot.attributes_for(:game_account)}
 	before :each do
 		login_as(user)
@@ -13,12 +14,9 @@ RSpec.feature "GameAccounts", type: :feature do
 		Warden.test_reset!
 	end
 
-	context "Show display game accounts" do
+	context "Show game accounts" do
 		scenario "Should list all the existing game accounts" do
 			expect(page).to have_selector("tbody tr", count: GameAccount.count)
-		end
-		
-		scenario "Should display edit and delete buttons" do
 			page.should have_selector(:link_or_button, 'Edit')
 			page.should have_selector(:link_or_button, 'Delete')	
 		end
