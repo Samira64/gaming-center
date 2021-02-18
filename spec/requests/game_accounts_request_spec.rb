@@ -1,25 +1,62 @@
 require 'rails_helper'
 
 RSpec.describe "GameAccounts", type: :request do
+	let!(:user) { FactoryBot.create(:admin)}
+	let!(:game_account) {FactoryBot.create(:game_account, {title: 'Last Of Us'})}
+
+	before do	
+		sign_in user
+	end
+
 	context "Get #index" do
-		it 'returns a success response' do
-			get "/admin/game_accounts"
-			expect(response).to be_success
+		it 'Shows the list of Game Accounts' do
+			get admin_game_accounts_path
+			expect(response.body).to include("All Game Accounts");
+			expect(response.body).to include(game_account.title);
+		end
+  end
+
+    context "Get #new" do
+		it "Renders a form for creating a new GameAccount" do
+			get new_admin_game_account_path
+			expect(response.body).to include("Create New Game Account")
+		end	
+	end
+
+	context "Get #edit" do
+		let!(:game_account) { FactoryBot.create(:game_account, { title: 'Tomb Raider' }) }
+
+		it "Displays a page for editing a GameAccount" do
+			get edit_admin_game_account_path game_account
+			expect(response.body).to include("Edit Game Account")
+			expect(response.body).to include(game_account.title)
 		end
 	end
 
-	context "update #edit" do
-		it "returns a success response" do
-			get "/admin/game_accounts/1/edit"
-			expect(response).to be_success
-		end
+	context "PUT #update" do
+		let!(:game_account) { FactoryBot.create(:game_account) }
+		let!(:new_game_params) { FactoryBot.attributes_for(:game_account) }
 
-		it "returns a success response" do
-			game_account = GameAccount.new(username: "Kevin", title: "Ruby", password: "123", email_password: "someObj", remarks: "nothing", cap1_status: "sold", cap2_status: "sold", cap3_status: "sold" ).save
-			account = GameAccount.update(game_account)
-			get :index
-			expect(response).to be_success
+	    it "Updates GameAccount details" do
+			put admin_game_account_path(game_account), params: { game_account: new_game_params }
+			game_account.reload
+			expect(response).to redirect_to(admin_game_accounts_path)
+			expect(game_account.title).to eql(new_game_params[:title])
 		end
-
+		
 	end
+
+	context "Delete #destroy" do
+		let!(:game_account) { FactoryBot.create(:game_account)}
+
+		it "Deletes a GameAccount" do
+			expect { delete "/admin/game_accounts/#{game_account.id}" }.to change(GameAccount, :count).by(-1)		
+		end
+	end
+
 end
+
+
+
+
+
