@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_13_163190) do
+ActiveRecord::Schema.define(version: 2021_01_19_080948) do
 
   create_table "action_mailbox_inbound_emails", force: :cascade do |t|
     t.integer "status", default: 0, null: false
@@ -63,6 +63,22 @@ ActiveRecord::Schema.define(version: 2021_01_13_163190) do
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  end
+
+  create_table "game_accounts", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "username"
+    t.string "password"
+    t.string "email_id"
+    t.string "email_password"
+    t.string "platform"
+    t.string "status"
+    t.string "cap1_status"
+    t.string "cap2_status"
+    t.string "cap3_status"
+    t.text "remarks"
   end
 
   create_table "spree_addresses", force: :cascade do |t|

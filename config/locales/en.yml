@@ -31,3 +31,9 @@
 
 en:
   hello: "Hello world"
+
+en: 
+  spree:
+    admin:
+      tab:
+        game_accounts: "Game Accounts"

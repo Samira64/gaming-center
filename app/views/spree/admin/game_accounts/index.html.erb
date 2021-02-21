@@ -1,0 +1,42 @@
+<% admin_layout "full-width" %>
+<% admin_breadcrumb("All Game Accounts") %>
+
+<% content_for :page_actions do %>
+  <li>
+    <%= link_to 'New Game Account', new_admin_game_account_url, id: 'admin_new_game_account', class: 'btn btn-primary' %>
+  </li>
+<% end %>
+
+<div class="col-md-12">
+	<table class="table table-hover mt-5">
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th>Username</th>
+				<th>Status</th>
+				<th>Created at</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @game_accounts.each do |game_account| %>
+			<tr>
+				<td><%= game_account.title %></td>
+				<td><%= game_account.username %></td>
+				<td><%= game_account.status %></td>
+				<td><%= game_account.created_at.strftime("%d %B %Y") %></td>
+				<td> 
+					<%= link_to 'Edit', edit_admin_game_account_path(game_account), class: "btn btn-warning" %>
+					<%= link_to 'Delete', admin_game_account_path(game_account), method: :delete, data: {confirm: "Are you sure?"},class: "btn btn-danger" %>
+				</td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+
+
+
+
+
+

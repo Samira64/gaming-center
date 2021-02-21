@@ -113,6 +113,14 @@ Spree::Backend::Config.configure do |config|
   # )
 end
 
+Spree::Backend::Config.configure do |config|
+  config.menu_items << config.class::MenuItem.new(
+    [:game_accounts],
+    'icon-name',
+    url: 'game_accounts'
+  )
+end
+
 Spree::Api::Config.configure do |config|
   config.requires_authentication = true
 end
