@@ -291,6 +291,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    selectize-rails (0.12.6)
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
@@ -433,6 +434,7 @@ DEPENDENCIES
   rails (~> 6.0.3, >= 6.0.3.4)
   rspec-rails (~> 4.0.2)
   sass-rails (>= 6)
+  selectize-rails
   selenium-webdriver
   simplecov
   solidus

@@ -69,5 +69,42 @@
 		</div>
 	</div>
 
+	<div class="form-group">
+		<%= label_tag "select order number", nil, class: "control-label col-sm-2" %>
+		<div class="col-sm-3">
+			<%= text_field_tag :select %>
+		</div>
+	</div>
+
 	<%= f.submit  "Submit", class: "btn btn-primary submit-button ml-3" %>
 <% end %>
+
+<script type="text/javascript">
+	$('#select').selectize({
+	options: [
+        {id: 'avenger', make: 'dodge', model: 'Avenger'},
+        {id: 'caliber', make: 'dodge', model: 'Caliber'},
+        {id: 'caravan-grand-passenger', make: 'dodge', model: 'Caravan Grand Passenger'},
+        {id: 'challenger', make: 'dodge', model: 'Challenger'},
+        {id: 'ram-1500', make: 'dodge', model: 'Ram 1500'},
+        {id: 'viper', make: 'dodge', model: 'Viper'},
+        {id: 'a3', make: 'audi', model: 'A3'},
+        {id: 'a6', make: 'audi', model: 'A6'},
+        {id: 'r8', make: 'audi', model: 'R8'},
+        {id: 'rs-4', make: 'audi', model: 'RS 4'}
+    ],
+    labelField: 'model',
+    valueField: 'id',
+    plugins: ['remove_button'],
+    delimiter: ',',
+    persist: false,
+    create: function(input) {
+        return {
+            value: input,
+            text: input
+        }
+    }
+});
+
+</script>
+
