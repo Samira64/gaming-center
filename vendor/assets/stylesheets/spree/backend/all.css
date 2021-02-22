@@ -6,4 +6,6 @@
  *= require spree/backend
  *= require_self
  *= require_tree .
+ *= require selectize
+ *= require selectize.default
 */
