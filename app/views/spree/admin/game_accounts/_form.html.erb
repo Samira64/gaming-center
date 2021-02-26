@@ -73,24 +73,27 @@
 		<%= label_tag "select order number", nil, class: "control-label col-sm-2" %>
 		<div class="col-sm-6">
 			<%= select_tag "select", options_from_collection_for_select(@completed_orders, "id", "number"), multiple: true %>
+
+			<%= content_for :form_script do %>
+				<script type="text/javascript">
+					$('#select').selectize({
+					    plugins: ['remove_button'],
+					    delimiter: ',',
+					    persist: false,
+					    create: function(input) {
+					        return {
+					            value: input,
+					            text: input
+					        }
+				        }        
+					});
+				</script>
+			<% end %>
 		</div>
 	</div>
 
 	<%= f.submit  "Submit", class: "btn btn-primary submit-button ml-3" %>
 <% end %>
 
-<script type="text/javascript">
-	$('#select').selectize({
-	    plugins: ['remove_button'],
-	    delimiter: ',',
-	    persist: false,
-	    create: function(input) {
-	        return {
-	            value: input,
-	            text: input
-	        }
-        }        
-});
 
-</script>
 
