@@ -1,7 +1,0 @@
-<!--
-  replace_contents "#listing_orders"
--->
-
-<div id="listing_orders">
-  <h2>the table is replaced by me</h2>
-</div>
