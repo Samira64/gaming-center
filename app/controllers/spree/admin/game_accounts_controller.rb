@@ -1,7 +1,6 @@
 module Spree
   module Admin
-    class GameAccountsController < Spree::Admin::BaseController
-    	
+    class GameAccountsController < Spree::Admin::BaseController  	
       def index
       	@game_accounts = GameAccount.all
       end
@@ -23,7 +22,7 @@ module Spree
 
 	def edit
 		@game_account= GameAccount.find(params[:id])
-		@completed_orders = Spree::Order.all.complete
+		@completed_orders = Spree::Order.complete
 	end
 
 	def update 
