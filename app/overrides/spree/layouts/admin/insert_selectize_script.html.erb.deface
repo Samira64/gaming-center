@@ -4,6 +4,9 @@
 
 <script type="text/javascript">
 	$('#select').selectize({
+	onItemAdd: function () {
+		alert("Add item");
+	},
 		plugins: ['remove_button'],
 		delimiter: ',',
 		persist: false,

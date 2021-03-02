@@ -75,6 +75,24 @@
 			<%= select_tag "select", options_from_collection_for_select(@completed_orders, "id", "number"), multiple: true %>
 		</div>
 	</div>
+	<div class="col-sm-6">
+		<div class="card border-primary mb-3" style="max-width: 18rem;">
+			<div class="card-header text-center text-white bg-primary">R12534</div>
+			<div class="card-body">
+				<div class="p-1"><span>Name: </span><span>Samira Soltani</span></div>
+				<div class="p-1"><span>Username: </span><span>s.soltani</span></div>
+				<div class="p-1"><span>Date of Order: </span><span>11/2/21</span></div>
+				<div class="p-1">
+					<span>Line Items: </span>
+					<ul>
+						<li>Fifa</li>
+						<li>Tomb raider</li>
+						<li>Lost</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<%= f.submit  "Submit", class: "btn btn-primary submit-button ml-3" %>
 <% end %>
