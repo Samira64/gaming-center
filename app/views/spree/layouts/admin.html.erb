@@ -2,6 +2,7 @@
 <html lang="<%= I18n.locale %>">
   <head data-hook="admin_inside_head">
     <%= render 'spree/admin/shared/head' %>
+    <%= javascript_pack_tag 'application' %>
   </head>
   <body class="admin <%= "admin-nav-hidden" if cookies[:admin_nav_hidden] == "true" %>">
     <%= render "spree/admin/shared/navigation" %>
