@@ -3,20 +3,19 @@
 -->
 
 <script type="text/javascript">
-const orderInfo = document.getElementById("selected-order-info");
+	const orderInfo = document.getElementById("orders-info-container");
 
 	$('#select').selectize({
 
 	onItemAdd: function (value) {
-		orderInfo.innerHTML = "";
 		const orderNumber = document.querySelector(`[data-value='${value}']`).innerText;
 		const slicedNum = orderNumber.slice(0, -1);
 
 		fetch(`http://localhost:3000/api/orders/${slicedNum}`, {headers: {'Authorization': 'Bearer 68611600a872a6a4d6c851255185626ca5e57fe0720a9521'}})
 		.then(res => res.json())
 		.then(data => {
-			orderInfo.innerHTML = `
-			<div class="card border-primary mb-3" style="max-width: 18rem;">
+			orderInfo.innerHTML += `
+			<div class="card border-primary mb-3" id="${value}" style="max-width: 18rem;">
 				<div class="card-header text-center text-white bg-primary">
 					${slicedNum}
 				</div>
@@ -43,8 +42,8 @@ const orderInfo = document.getElementById("selected-order-info");
 			</div>`;				
 		});
 	},
-	onItemRemove: function() {
-		orderInfo.innerHTML = "";
+	onItemRemove: function(value) {
+		$("#" + value)[0].remove();
 	},
 		plugins: ['remove_button'],
 		delimiter: ',',
