@@ -5,19 +5,11 @@
 <script type="text/javascript">
 	const orderInfo = document.getElementById("orders-info-container");
 
-	$('#select').selectize({
-
-	onItemAdd: function (value) {
-		const orderNumber = document.querySelector(`[data-value='${value}']`).innerText;
-		const slicedNum = orderNumber.slice(0, -1);
-
-		fetch(`http://localhost:3000/api/orders/${slicedNum}`, {headers: {'Authorization': 'Bearer 68611600a872a6a4d6c851255185626ca5e57fe0720a9521'}})
-		.then(res => res.json())
-		.then(data => {
-			orderInfo.innerHTML += `
-			<div class="card border-primary mb-3" id="${value}" style="max-width: 18rem;">
+	function makeOrderInfoCard(value, data, orderNumber) {
+		orderInfo.innerHTML += `
+			<div class="card border-primary m-3" id="${"order-" + value}" style="max-width: 18rem;">
 				<div class="card-header text-center text-white bg-primary">
-					${slicedNum}
+					${orderNumber}
 				</div>
 				<div class="card-body">
 					<div class="p-1">
@@ -40,10 +32,22 @@
 					</div>
 				</div>
 			</div>`;				
+	};
+
+	$('#select').selectize({
+
+	onItemAdd: function(value, $item) {
+		let orderNumber = $item.text();
+		orderNumber = orderNumber.replace(/×/, "");
+		
+		fetch(`/api/orders/${orderNumber}`, {headers: {'Authorization': 'Bearer 68611600a872a6a4d6c851255185626ca5e57fe0720a9521'}})
+		.then(res => res.json())
+		.then(data => {
+			makeOrderInfoCard(value, data, orderNumber);
 		});
 	},
 	onItemRemove: function(value) {
-		$("#" + value)[0].remove();
+		$("#order-" + value).remove();
 	},
 		plugins: ['remove_button'],
 		delimiter: ',',
