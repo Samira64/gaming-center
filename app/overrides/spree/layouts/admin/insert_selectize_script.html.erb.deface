@@ -3,9 +3,48 @@
 -->
 
 <script type="text/javascript">
+const orderInfo = document.getElementById("selected-order-info");
+
 	$('#select').selectize({
-	onItemAdd: function () {
-		alert("Add item");
+
+	onItemAdd: function (value) {
+		orderInfo.innerHTML = "";
+		const orderNumber = document.querySelector(`[data-value='${value}']`).innerText;
+		const slicedNum = orderNumber.slice(0, -1);
+
+		fetch(`http://localhost:3000/api/orders/${slicedNum}`, {headers: {'Authorization': 'Bearer 68611600a872a6a4d6c851255185626ca5e57fe0720a9521'}})
+		.then(res => res.json())
+		.then(data => {
+			orderInfo.innerHTML = `
+			<div class="card border-primary mb-3" style="max-width: 18rem;">
+				<div class="card-header text-center text-white bg-primary">
+					${slicedNum}
+				</div>
+				<div class="card-body">
+					<div class="p-1">
+						<span>Name: </span><span>${data.ship_address.name}</span>
+					</div>
+					<div class="p-1">
+						<span>Username: </span><span>${data.email}</span>
+					</div>
+					<div class="p-1">
+						<span>Date of Order: </span><span>${data.created_at}</span>
+					</div>
+					<div class="p-1">
+						<span>Line Items: </span>
+						<ul>
+							${data.line_items.map(line_item => `
+								<li>${line_item.variant.name}</li>
+							`
+							)}
+						</ul>
+					</div>
+				</div>
+			</div>`;				
+		});
+	},
+	onItemRemove: function() {
+		orderInfo.innerHTML = "";
 	},
 		plugins: ['remove_button'],
 		delimiter: ',',
