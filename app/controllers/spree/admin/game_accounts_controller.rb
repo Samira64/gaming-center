@@ -21,6 +21,7 @@ module Spree
 	end
 
 	def edit
+		@api_key = spree_current_user.spree_api_key;
 		@game_account= GameAccount.find(params[:id])
 		@completed_orders = Spree::Order.complete
 	end
