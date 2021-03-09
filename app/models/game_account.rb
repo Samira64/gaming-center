@@ -1,5 +1,5 @@
 class GameAccount < ApplicationRecord	
-	has_and_belongs_to_many :orders
+	has_and_belongs_to_many :orders, class_name: "Spree::Order"
 
 	validates :email_id, presence: true
 
