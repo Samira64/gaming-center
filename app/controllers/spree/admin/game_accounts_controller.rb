@@ -1,6 +1,12 @@
 module Spree
   module Admin
-    class GameAccountsController < Spree::Admin::BaseController  	
+    class GameAccountsController < Spree::Admin::BaseController  
+      before_action :set_completed_orders, only: [:edit, :new]
+
+      def set_completed_orders
+    		@completed_orders = Spree::Order.complete
+      end	
+
       def index
       	@game_accounts = GameAccount.all
       end
@@ -23,7 +29,6 @@ module Spree
 	def edit
 		@api_key = spree_current_user.spree_api_key;
 		@game_account= GameAccount.find(params[:id])
-		@completed_orders = Spree::Order.complete
 	end
 
 	def update 
