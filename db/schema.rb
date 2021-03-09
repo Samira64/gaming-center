@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_19_080948) do
+ActiveRecord::Schema.define(version: 2021_03_08_210912) do
 
   create_table "action_mailbox_inbound_emails", force: :cascade do |t|
     t.integer "status", default: 0, null: false
@@ -79,6 +79,13 @@ ActiveRecord::Schema.define(version: 2021_01_19_080948) do
     t.string "cap2_status"
     t.string "cap3_status"
     t.text "remarks"
+  end
+
+  create_table "game_accounts_spree_orders", force: :cascade do |t|
+    t.integer "game_account_id", null: false
+    t.integer "order_id", null: false
+    t.index ["game_account_id"], name: "index_game_accounts_spree_orders_on_game_account_id"
+    t.index ["order_id"], name: "index_game_accounts_spree_orders_on_order_id"
   end
 
   create_table "spree_addresses", force: :cascade do |t|
@@ -1224,6 +1231,8 @@ ActiveRecord::Schema.define(version: 2021_01_19_080948) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "game_accounts_spree_orders", "game_accounts"
+  add_foreign_key "game_accounts_spree_orders", "orders"
   add_foreign_key "spree_promotion_code_batches", "spree_promotions", column: "promotion_id"
   add_foreign_key "spree_promotion_codes", "spree_promotion_code_batches", column: "promotion_code_batch_id"
   add_foreign_key "spree_tax_rate_tax_categories", "spree_tax_categories", column: "tax_category_id"
