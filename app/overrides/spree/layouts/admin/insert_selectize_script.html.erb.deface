@@ -34,12 +34,11 @@
 			</div>`;				
 	};
 
-	$('#select').selectize({
+	$('#game_account_order_ids').selectize({
 
 	onItemAdd: function(value, $item) {
 		let orderNumber = $item.text();
 		orderNumber = orderNumber.replace(/×/, "");
-		debugger;
 		
 		fetch(`/api/orders/${orderNumber}`, {headers: {'Authorization': 'Bearer <%= @api_key %>'}})
 		.then(res => res.json())
