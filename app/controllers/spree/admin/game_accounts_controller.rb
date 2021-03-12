@@ -23,6 +23,7 @@ module Spree
 	def edit
 		@api_key = spree_current_user.spree_api_key;
 		@game_account= GameAccount.find(params[:id])
+		@selected_orders = @game_account.orders.map{|order| order.id}
 		@completed_orders = Spree::Order.complete
 	end
 

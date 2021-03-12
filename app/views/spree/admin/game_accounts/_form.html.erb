@@ -72,7 +72,7 @@
 	<div class="form-group">
 		<%= label_tag "Order Numbers", nil, class: "control-label col-sm-2" %>
 		<div class="col-sm-6">
-			<%= select_tag "game_account[order_ids]", options_from_collection_for_select(@completed_orders, "id", "number"), multiple: true %>
+			<%= select_tag "game_account[order_ids]", options_from_collection_for_select(@completed_orders, "id", "number", selected: @selected_orders), multiple: true %>
 		</div>
 	</div>
 
