@@ -81,9 +81,9 @@ ActiveRecord::Schema.define(version: 2021_03_08_210912) do
     t.text "remarks"
   end
 
-  create_table "game_accounts_spree_orders", force: :cascade do |t|
-    t.integer "game_account_id", null: false
-    t.integer "order_id", null: false
+  create_table "game_accounts_spree_orders", id: false, force: :cascade do |t|
+    t.integer "game_account_id"
+    t.integer "order_id"
     t.index ["game_account_id"], name: "index_game_accounts_spree_orders_on_game_account_id"
     t.index ["order_id"], name: "index_game_accounts_spree_orders_on_order_id"
   end
@@ -1231,8 +1231,6 @@ ActiveRecord::Schema.define(version: 2021_03_08_210912) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "game_accounts_spree_orders", "game_accounts"
-  add_foreign_key "game_accounts_spree_orders", "orders"
   add_foreign_key "spree_promotion_code_batches", "spree_promotions", column: "promotion_id"
   add_foreign_key "spree_promotion_codes", "spree_promotion_code_batches", column: "promotion_code_batch_id"
   add_foreign_key "spree_tax_rate_tax_categories", "spree_tax_categories", column: "tax_category_id"
