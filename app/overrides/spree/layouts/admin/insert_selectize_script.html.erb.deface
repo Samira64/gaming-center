@@ -35,20 +35,19 @@
 	};
 
 	$('#game_account_order_ids').selectize({
-
-	onItemAdd: function(value, $item) {
-		let orderNumber = $item.text();
-		orderNumber = orderNumber.replace(/×/, "");
-		
-		fetch(`/api/orders/${orderNumber}`, {headers: {'Authorization': 'Bearer <%= @api_key %>'}})
-		.then(res => res.json())
-		.then(data => {
-			makeOrderInfoCard(value, data, orderNumber);
-		});
-	},
-	onItemRemove: function(value) {
-		$("#order-" + value).remove();
-	},
+		onItemAdd: function(value, $item) {
+			let orderNumber = $item.text();
+			orderNumber = orderNumber.replace(/×/, "");
+			
+			fetch(`/api/orders/${orderNumber}`, {headers: {'Authorization': 'Bearer <%= @api_key %>'}})
+			.then(res => res.json())
+			.then(data => {
+				makeOrderInfoCard(value, data, orderNumber);
+			});
+		},
+		onItemRemove: function(value) {
+			$("#order-" + value).remove();
+		},
 		plugins: ['remove_button'],
 		delimiter: ',',
 		persist: false,
@@ -57,7 +56,7 @@
 				value: input,
 				text: input
 				}
-	    }        
+	    }     
 	});
 </script>
 			
