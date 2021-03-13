@@ -23,18 +23,30 @@ module Spree
 	def edit
 		@api_key = spree_current_user.spree_api_key;
 		@game_account= GameAccount.find(params[:id])
-		@selected_orders = @game_account.orders.map{|order| order.id}
 		@completed_orders = Spree::Order.complete
 	end
 
 	def update 
 		@game_account= GameAccount.find(params[:id])
 		selected_order_ids = params["game_account"]["order_ids"]
+		new_array = []
 		
 		if @game_account.update(game_account_params)
-			selected_order_ids.each do | order_id |
-				order = Spree::Order.find(order_id)
-				@game_account.orders << order
+			if selected_order_ids
+				@game_account.orders.each do |order|
+					order_id = order.id.to_s
+					if !selected_order_ids.include? order_id 
+						@game_account.orders.delete(order)
+					end
+				end
+				selected_order_ids.each do | order_id |
+					if (!@game_account.orders.exists?(order_id))
+						order = Spree::Order.find(order_id)
+						@game_account.orders << order
+					end		
+				end
+			else
+				@game_account.orders = []
 			end
 			
 			redirect_to admin_game_accounts_url, notice: "Game account \"#{@game_account.title}\" is updated successfully"
