@@ -5,16 +5,13 @@
 <script type="text/javascript">
 	const orderInfo = document.getElementById("orders-info-container");
 
-	function makeOrderInfoCard(value, data, orderNumber) {
+	function makeOrderInfoCard(data) {
 		orderInfo.innerHTML += `
-			<div class="card border-primary m-3" id="${"order-" + value}" style="max-width: 18rem;">
+			<div class="card border-primary m-3" id="${"order-" + data.id}" style="max-width: 18rem;">
 				<div class="card-header text-center text-white bg-primary">
-					${orderNumber}
+					${data.number}
 				</div>
 				<div class="card-body">
-					<div class="p-1">
-						<span>Name: </span><span>${data.ship_address.name}</span>
-					</div>
 					<div class="p-1">
 						<span>Username: </span><span>${data.email}</span>
 					</div>
@@ -34,7 +31,7 @@
 			</div>`;				
 	};
 
-	$('#game_account_order_ids').selectize({
+	$('#game_account_order_ids').selectize({	
 		onItemAdd: function(value, $item) {
 			let orderNumber = $item.text();
 			orderNumber = orderNumber.replace(/×/, "");
@@ -42,7 +39,7 @@
 			fetch(`/api/orders/${orderNumber}`, {headers: {'Authorization': 'Bearer <%= @api_key %>'}})
 			.then(res => res.json())
 			.then(data => {
-				makeOrderInfoCard(value, data, orderNumber);
+				makeOrderInfoCard(data);
 			});
 		},
 		onItemRemove: function(value) {
@@ -58,5 +55,20 @@
 				}
 	    }     
 	});
+
+	<% if @game_account %>
+		const currentOrders = <%= @game_account.orders.to_json(
+			:include => { :line_items => {
+							:include => { :variant => {
+								:only => :name }
+							} }
+						}).html_safe %>;
+
+			window.addEventListener("load", function() {
+			currentOrders.forEach( order => {
+				makeOrderInfoCard(order);
+			});		
+		});
+	<% end %>
 </script>
-			
+
