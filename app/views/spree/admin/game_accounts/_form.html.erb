@@ -1,86 +1,161 @@
 <% capacities = GameAccount.capacities.map {|c| [c.capitalize, c] }%>
 <%= form_for [:admin, @game_account] do |f| %>
-	<div class="form-row">
-		<div class="form-group col-md-6">
-			<%= f.label "title", class: "control-label col-sm-2" %>
-			<div class="col-sm-3 col-md-6">
-				<%= f.text_field :title, class: "form-control" %>
-			</div>
-		</div>
-
-		<div class="form-group col-md-6">
-			<%= f.label "cap1-status", class:"control-label col-sm-3" %>
-			<div class="col-sm-3">
-				<%= f.select :cap1_status, options_for_select(capacities, :selected => @game_account.cap1_status) %>
-			</div>
-		</div>
-	</div>
-	
-	<div class="form-row">
-		<div class= "form-group col-md-6">
-			<%= f.label "username", class: "control-label col-sm-2" %>
-			<div class="col-sm-3 col-md-6">
-				<%= f.text_field :username, class: "form-control" %>
-			</div>
-		</div>
-
-		<div class="form-group col-md-6">
-			<%= f.label "cap2-status", class:"control-label col-sm-3" %>
-			<div class="col-sm-3">
-				<%= f.select :cap2_status, options_for_select(capacities, :selected => @game_account.cap2_status) %>
-			</div>
-		</div>
-	</div>
-
-	<div class="form-row">
-		<div class="form-group col-md-6">
-			<%= f.label "password", class: "control-label col-sm-2" %>
-			<div class="col-sm-3 col-md-6">
-				<%= f.text_field :password, class: "form-control" %>
-			</div>
-		</div>
-
-		<div class="form-group col-md-6">
-			<%= f.label "cap3-status", class:"control-label col-sm-3" %>
-			<div class="col-sm-3">
-				<%= f.select :cap3_status, options_for_select(capacities, :selected => @game_account.cap3_status) %>
-			</div>
-		</div>
-	</div>
-
-	<div class="form-group">
-		<%= f.label "email_id", "Email ID", class:"control-label col-sm-2" %>
-		<div class="col-sm-3">
-			<%= f.text_field :email_id, class: "form-control" %>
-		</div>
-	</div>
-
-	<div class="form-group">
-		<%= f.label "email_password", class:"control-label col-sm-2" %>
-		<div class="col-sm-3">
-			<%= f.text_field :email_password, class: "form-control" %>
-		</div>
-	</div>
-
-	<div class="form-group">
-		<%= f.label "remarks", class: "control-label col-sm-2" %>
+<div class="form-row">
+	<div class="form-group col-md-6">
+		<%= f.label "title", class: "control-label col-sm-2" %>
 		<div class="col-sm-3 col-md-6">
-			<%= f.text_area :remarks, rows: "5", class: "form-control" %>
+			<%= f.text_field :title, class: "form-control" %>
 		</div>
 	</div>
 
-	<div class="form-group">
-		<%= label_tag "Order Numbers", nil, class: "control-label col-sm-2" %>
-		<div class="col-sm-6">
-			<%  selected_orders = @game_account.orders.map{|order| order.id} %>
-			<%= select_tag "game_account[order_ids]", options_from_collection_for_select(@completed_orders, "id", "number", selected: selected_orders), multiple: true %>
+	<div class="form-group col-md-6">
+		<%= f.label "cap1-status", class:"control-label col-sm-3" %>
+		<div class="col-sm-3">
+			<%= f.select :cap1_status, options_for_select(capacities, :selected => @game_account.cap1_status) %>
+		</div>
+	</div>
+</div>
+
+<div class="form-row">
+	<div class= "form-group col-md-6">
+		<%= f.label "username", class: "control-label col-sm-2" %>
+		<div class="col-sm-3 col-md-6">
+			<%= f.text_field :username, class: "form-control" %>
 		</div>
 	</div>
 
-	<div class="col-sm-6 d-flex mt-5" id="orders-info-container"></div>
+	<div class="form-group col-md-6">
+		<%= f.label "cap2-status", class:"control-label col-sm-3" %>
+		<div class="col-sm-3">
+			<%= f.select :cap2_status, options_for_select(capacities, :selected => @game_account.cap2_status) %>
+		</div>
+	</div>
+</div>
 
-	<%= f.submit  "Submit", class: "btn btn-primary submit-button ml-3" %>
+<div class="form-row">
+	<div class="form-group col-md-6">
+		<%= f.label "password", class: "control-label col-sm-2" %>
+		<div class="col-sm-3 col-md-6">
+			<%= f.text_field :password, class: "form-control" %>
+		</div>
+	</div>
+
+	<div class="form-group col-md-6">
+		<%= f.label "cap3-status", class:"control-label col-sm-3" %>
+		<div class="col-sm-3">
+			<%= f.select :cap3_status, options_for_select(capacities, :selected => @game_account.cap3_status) %>
+		</div>
+	</div>
+</div>
+
+<div class="form-group">
+	<%= f.label "email_id", "Email ID", class:"control-label col-sm-2" %>
+	<div class="col-sm-3">
+		<%= f.text_field :email_id, class: "form-control" %>
+	</div>
+</div>
+
+<div class="form-group">
+	<%= f.label "email_password", class:"control-label col-sm-2" %>
+	<div class="col-sm-3">
+		<%= f.text_field :email_password, class: "form-control" %>
+	</div>
+</div>
+
+<div class="form-group">
+	<%= f.label "remarks", class: "control-label col-sm-2" %>
+	<div class="col-sm-3 col-md-6">
+		<%= f.text_area :remarks, rows: "5", class: "form-control" %>
+	</div>
+</div>
+
+<div class="form-group">
+	<%= label_tag "Order Numbers", nil, class: "control-label col-sm-2" %>
+	<div class="col-sm-6">
+		<%  selected_orders = @game_account.orders.map{|order| order.id} %>
+		<%= select_tag "game_account[order_ids]", options_from_collection_for_select(@completed_orders, "id", "number", selected: selected_orders), multiple: true %>
+	</div>
+</div>
+
+<div class="col-sm-6 d-flex mt-5" id="orders-info-container"></div>
+
+<%= f.submit  "Submit", class: "btn btn-primary submit-button ml-3" %>
 <% end %>
+
+
+
+<% content_for :page_scripts do %>
+	<script>
+		const orderInfo = document.getElementById("orders-info-container");
+
+		function makeOrderInfoCard(data) {
+			orderInfo.innerHTML += `
+			<div class="card border-primary m-3" id="${"order-" + data.id}" style="max-width: 18rem;">
+			<div class="card-header text-center text-white bg-primary">
+			${data.number}
+			</div>
+			<div class="card-body">
+			<div class="p-1">
+			<span>Username: </span><span>${data.email}</span>
+			</div>
+			<div class="p-1">
+			<span>Date of Order: </span><span>${data.created_at}</span>
+			</div>
+			<div class="p-1">
+			<span>Line Items: </span>
+			<ul>
+			${data.line_items.map(line_item => `
+				<li>${line_item.variant.name}</li>
+				`
+				)}
+			</ul>
+			</div>
+			</div>
+			</div>`;				
+		};
+
+		$('#game_account_order_ids').selectize({	
+			onItemAdd: function(value, $item) {
+				let orderNumber = $item.text();
+				orderNumber = orderNumber.replace(/×/, "");
+
+				fetch(`/api/orders/${orderNumber}`, {headers: {'Authorization': 'Bearer <%= @api_key %>'}})
+				.then(res => res.json())
+				.then(data => {
+					makeOrderInfoCard(data);
+				});
+			},
+			onItemRemove: function(value) {
+				$("#order-" + value).remove();
+			},
+			plugins: ['remove_button'],
+			delimiter: ',',
+			persist: false,
+			create: function(input) {
+				return {
+					value: input,
+					text: input
+				}
+			}     
+		});
+
+		const currentOrders = <%= @game_account.orders.to_json(
+			:include => { :line_items => {
+				:include => { :variant => {
+					:only => :name }
+				} }
+			}).html_safe %>;
+
+		window.addEventListener("load", function() {
+			currentOrders.forEach( order => {
+				makeOrderInfoCard(order);
+			});		
+		});
+</script>
+<% end %>
+
+
+
 
 
 
