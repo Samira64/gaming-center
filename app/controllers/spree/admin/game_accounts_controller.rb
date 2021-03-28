@@ -30,20 +30,13 @@ module Spree
 		@game_account= GameAccount.find(params[:id])
 		selected_order_ids = params["game_account"]["order_ids"]
 		new_array = []
-		
+
 		if @game_account.update(game_account_params)
-			if selected_order_ids
-				@game_account.orders.each do |order|
-					order_id = order.id.to_s
-					if !selected_order_ids.include? order_id 
-						@game_account.orders.delete(order)
-					end
-				end
-				selected_order_ids.each do | order_id |
-					if (!@game_account.orders.exists?(order_id))
-						order = Spree::Order.find(order_id)
-						@game_account.orders << order
-					end		
+			if selected_order_ids		
+				selected_order_ids.each do | order_id |	
+					order = Spree::Order.find(order_id)
+					new_array << order
+					@game_account.orders.replace(new_array)			
 				end
 			else
 				@game_account.orders = []
