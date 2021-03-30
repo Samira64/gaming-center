@@ -69,19 +69,20 @@
 	</div>
 </div>
 
-<div class="form-group">
-	<%= label_tag "Order Numbers", nil, class: "control-label col-sm-2" %>
-	<div class="col-sm-6">
-		<%  selected_orders = @game_account.orders.map{|order| order.id} %>
-		<%= select_tag "game_account[order_ids]", options_from_collection_for_select(@completed_orders, "id", "number", selected: selected_orders), multiple: true %>
+<% if controller.action_name === "edit" %> 
+	<div class="form-group">
+		<%= label_tag "Order Numbers", nil, class: "control-label col-sm-2" %>
+		<div class="col-sm-6">
+			<%  selected_orders = @game_account.orders.map{|order| order.id} %>
+			<%= select_tag "game_account[order_ids]", options_from_collection_for_select(@completed_orders, "id", "number", selected: selected_orders), multiple: true %>
+		</div>
 	</div>
-</div>
+<% end %>
 
 <div class="col-sm-6 d-flex mt-5" id="orders-info-container"></div>
 
 <%= f.submit  "Submit", class: "btn btn-primary submit-button ml-3" %>
 <% end %>
-
 
 
 <% content_for :page_scripts do %>
@@ -151,8 +152,9 @@
 				makeOrderInfoCard(order);
 			});		
 		});
-</script>
+	</script>
 <% end %>
+
 
 
 
