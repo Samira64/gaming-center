@@ -33,8 +33,10 @@ module Spree
 
 	def update 
 		@game_account= GameAccount.find(params[:id])
-		
+		selected_order_ids = params["game_account"]["order_ids"] || []
 		if @game_account.update(game_account_params)
+			orders = Spree::Order.find(selected_order_ids)
+			@game_account.orders.replace(orders)
 			redirect_to admin_game_accounts_url, notice: "Game account \"#{@game_account.title}\" is updated successfully"
 		else
 			render "edit"

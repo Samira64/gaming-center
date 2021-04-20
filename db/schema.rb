@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_19_080948) do
+ActiveRecord::Schema.define(version: 2021_03_08_210912) do
 
   create_table "action_mailbox_inbound_emails", force: :cascade do |t|
     t.integer "status", default: 0, null: false
@@ -79,6 +79,13 @@ ActiveRecord::Schema.define(version: 2021_01_19_080948) do
     t.string "cap2_status"
     t.string "cap3_status"
     t.text "remarks"
+  end
+
+  create_table "game_accounts_spree_orders", id: false, force: :cascade do |t|
+    t.integer "game_account_id"
+    t.integer "order_id"
+    t.index ["game_account_id"], name: "index_game_accounts_spree_orders_on_game_account_id"
+    t.index ["order_id"], name: "index_game_accounts_spree_orders_on_order_id"
   end
 
   create_table "spree_addresses", force: :cascade do |t|
