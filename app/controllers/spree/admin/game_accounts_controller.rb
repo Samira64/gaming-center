@@ -1,6 +1,11 @@
 module Spree
   module Admin
-    class GameAccountsController < Spree::Admin::BaseController
+    class GameAccountsController < Spree::Admin::BaseController  
+      before_action :set_completed_orders, only: [:edit, :new]
+
+      def set_completed_orders
+    		@completed_orders = Spree::Order.complete
+      end	
 
       def index
       	@game_accounts = GameAccount.all
@@ -22,13 +27,16 @@ module Spree
 	end
 
 	def edit
+		@api_key = spree_current_user.spree_api_key;
 		@game_account= GameAccount.find(params[:id])
 	end
 
 	def update 
 		@game_account= GameAccount.find(params[:id])
-		
+		selected_order_ids = params["game_account"]["order_ids"] || []
 		if @game_account.update(game_account_params)
+			orders = Spree::Order.find(selected_order_ids)
+			@game_account.orders.replace(orders)
 			redirect_to admin_game_accounts_url, notice: "Game account \"#{@game_account.title}\" is updated successfully"
 		else
 			render "edit"

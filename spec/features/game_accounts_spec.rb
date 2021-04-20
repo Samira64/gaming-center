@@ -1,7 +1,7 @@
-require 'rails_helper'
+ require 'rails_helper'
 
 RSpec.feature "GameAccounts", type: :feature do
-	let!(:user) { FactoryBot.create(:admin)}
+	let!(:user) { FactoryBot.create(:admin) }
 	let!(:game_accounts) {FactoryBot.create_list(:game_account, 5)}
 	let!(:game_account_attrs) { FactoryBot.attributes_for(:game_account)}
 	before :each do
@@ -57,12 +57,14 @@ RSpec.feature "GameAccounts", type: :feature do
 	context "Update game account" do
 		let!(:game_account) { FactoryBot.create(:game_account) }
 		let!(:game_account_attrs) { FactoryBot.attributes_for(:game_account)}
+		let(:order) { FactoryBot.create(:order) }
          
         scenario "Should display edit form" do
         	visit current_path		
         	click_link('Edit', href: "#{edit_admin_game_account_path(game_account)}")
         	expect(current_path).to eql(edit_admin_game_account_path(game_account)) 
-
+        	
+        	expect(order).to be_valid
         end  
 
 		scenario "Should update the game account" do
